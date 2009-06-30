@@ -864,8 +864,13 @@ main (int argc, char **argv)
     ushare_free (ut);
     return EXIT_FAILURE;
   }
-
-  build_metadata_list (ut);
+  
+  while (true) {
+    log_info (_("Rescanning...\n"));
+    free_metadata_list(ut);
+    build_metadata_list(ut);
+    sleep(30);
+  }
 
   /* Let main sleep until it's time to die... */
   pthread_mutex_lock (&ut->termination_mutex);

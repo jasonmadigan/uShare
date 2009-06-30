@@ -1,3 +1,9 @@
+Build Deps
+==========
+sudo apt-get source ushare
+sudo apt-get build-dep ushare
+
+
 GeeXboX uShare - Introduction
 =============================
 
