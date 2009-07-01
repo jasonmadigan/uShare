@@ -865,17 +865,17 @@ main (int argc, char **argv)
     return EXIT_FAILURE;
   }
   
+  /* Let main sleep until it's time to die... */
+  // pthread_mutex_lock (&ut->termination_mutex);
+  // pthread_cond_wait (&ut->termination_cond, &ut->termination_mutex);
+  // pthread_mutex_unlock (&ut->termination_mutex);
+  
   while (true) {
     log_info (_("Rescanning...\n"));
     free_metadata_list(ut);
     build_metadata_list(ut);
     sleep(30);
   }
-
-  /* Let main sleep until it's time to die... */
-  pthread_mutex_lock (&ut->termination_mutex);
-  pthread_cond_wait (&ut->termination_cond, &ut->termination_mutex);
-  pthread_mutex_unlock (&ut->termination_mutex);
 
   if (ut->use_telnet)
     ctrl_telnet_stop ();
